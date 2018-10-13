@@ -2,6 +2,9 @@
 
 > `npm link` for TypeScript projects.
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![](https://circleci.com/gh/NaturalCycles/linked.svg?style=shield&circle-token=cbb20b471eb9c1d5ed975e28c2a79a45671d78ea)](https://circleci.com/gh/NaturalCycles/linked)
+
 ## Problem
 
 `npm link` is good, but TypeScript projects require a build step (transpilation from

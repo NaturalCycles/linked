@@ -2,7 +2,9 @@
   "name": "@naturalcycles/linked",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "[ \"$DOCKER_PROD\" = \"\" ] && dist/bin/linked.js postinstall || exit 0"
+  },
   "dependencies": {
     "chalk": "^2.4.1",
     "cosmiconfig": "^5.0.6"

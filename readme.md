@@ -1,4 +1,4 @@
-# @naturalcycles/linked
+## @naturalcycles/linked
 
 > `npm link` for TypeScript projects.
 

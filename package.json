@@ -21,7 +21,8 @@
     "dist"
   ],
   "bin": {
-    "linked": "dist/bin/linked.js"
+    "linked": "dist/bin/linked.js",
+    "unlinked": "dist/bin/unlinked.js"
   },
   "engines": {
     "node": ">=8.9"

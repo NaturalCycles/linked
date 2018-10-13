@@ -10,11 +10,6 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "rootDir": "./src",
-    "paths": {
-      "*": ["*"],
-      "@src/*": ["src/*"],
-      "@linked/*": ["src/@linked/*"]
-    },
     "typeRoots": ["node_modules/@types", "src/typings"],
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,

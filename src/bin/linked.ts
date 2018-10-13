@@ -10,13 +10,7 @@ yarn linked postinstall
 
 */
 
-import {
-  COMMANDS,
-  doLinkAll,
-  doPostinstallAll,
-  doUnlinkAll,
-  readConfig,
-} from '@src/util/linked.util'
+import { COMMANDS, doLinkAll, doPostinstallAll, doUnlinkAll, readConfig } from '../util/linked.util'
 
 doWork().catch(err => {
   console.error((err && err.message) || err)

@@ -6,7 +6,7 @@ yarn unlinked
 
 */
 
-import { doUnlinkAll, readConfig } from '@src/util/linked.util'
+import { doUnlinkAll, readConfig } from '../util/linked.util'
 
 doWork().catch(err => {
   console.error((err && err.message) || err)

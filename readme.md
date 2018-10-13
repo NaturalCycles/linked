@@ -30,3 +30,5 @@ In _unlinked_ mode - files are copied from `node_modules/SomeProject`.
 `yarn linked` - enable _linked mode_
 
 `yarn unlinked` - disable _linked mode_
+
+`yarn linked postinstall` - needs to be called in your project's `postinstall` AND after each `yarn upgrade` of linked project.

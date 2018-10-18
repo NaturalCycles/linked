@@ -47,7 +47,10 @@ export async function doUnlinkAll (linkedProjects: StringMap) {
 }
 
 async function doLink (moduleName: string, modulePath: string) {
-  const srcFile = `${ROOT_DIR}/src/@linked/${moduleName}/src`
+  const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
+  const srcFile = `${srcDir}/src`
+  await fs.ensureDir(srcDir)
+
   const exists = await fs.pathExists(srcFile)
   if (exists) {
     // console.log(`del ${srcFile}`)
@@ -69,7 +72,10 @@ async function doLink (moduleName: string, modulePath: string) {
 }
 
 async function doUnlink (moduleName: string) {
-  const srcFile = `${ROOT_DIR}/src/@linked/${moduleName}/src`
+  const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
+  const srcFile = `${srcDir}/src`
+  await fs.ensureDir(srcDir)
+
   const exists = await fs.pathExists(srcFile)
   if (exists) {
     // console.log(`del ${srcFile}`)
@@ -91,7 +97,10 @@ async function doUnlink (moduleName: string) {
 }
 
 async function doPostinstall (moduleName: string) {
-  const srcFile = `${ROOT_DIR}/src/@linked/${moduleName}/src`
+  const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
+  const srcFile = `${srcDir}/src`
+  await fs.ensureDir(srcDir)
+
   const exists = await fs.pathExists(srcFile)
   let linked = false
 

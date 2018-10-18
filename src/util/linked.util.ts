@@ -2,7 +2,6 @@ import * as cosmiconfig from 'cosmiconfig'
 import * as cpx from 'cpx'
 import * as del from 'del'
 import * as fs from 'fs-extra'
-import * as path from 'path'
 const chalk = require('chalk')
 
 export interface StringMap {
@@ -17,7 +16,8 @@ export interface LinkedConfig {
   linkedProjects: StringMap
 }
 
-export const ROOT_DIR = path.join(__dirname, '/../../../../..')
+const ROOT_DIR = process.cwd()
+// const ROOT_DIR = path.join(__dirname, '/../../../../..')
 // console.log({ ROOT_DIR })
 
 export const COMMANDS = ['link', 'unlink', 'postinstall']
@@ -48,14 +48,8 @@ export async function doUnlinkAll (linkedProjects: StringMap) {
 
 async function doLink (moduleName: string, modulePath: string) {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  const srcFile = `${srcDir}/src`
   await fs.ensureDir(srcDir)
-
-  const exists = await fs.pathExists(srcFile)
-  if (exists) {
-    // console.log(`del ${srcFile}`)
-    del.sync(srcFile)
-  }
+  await del(srcDir)
 
   const symlinkTarget = `${modulePath}/src`
 
@@ -68,21 +62,13 @@ async function doLink (moduleName: string, modulePath: string) {
     ].join(' '),
   )
 
-  fs.symlinkSync(symlinkTarget, srcFile)
+  fs.symlinkSync(symlinkTarget, srcDir)
 }
 
 async function doUnlink (moduleName: string) {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  const srcFile = `${srcDir}/src`
   await fs.ensureDir(srcDir)
-
-  const exists = await fs.pathExists(srcFile)
-  if (exists) {
-    // console.log(`del ${srcFile}`)
-    del.sync(srcFile)
-  }
-
-  const dest = `${ROOT_DIR}/src/@linked/${moduleName}/src`
+  await del(srcDir)
 
   console.log(
     [
@@ -93,20 +79,15 @@ async function doUnlink (moduleName: string) {
     ].join(' '),
   )
 
-  cpx.copySync(`${ROOT_DIR}/node_modules/${moduleName}/src/**/*`, dest)
+  cpx.copySync(`${ROOT_DIR}/node_modules/${moduleName}/src/**/*`, srcDir)
 }
 
 async function doPostinstall (moduleName: string) {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  const srcFile = `${srcDir}/src`
   await fs.ensureDir(srcDir)
 
-  const exists = await fs.pathExists(srcFile)
-  let linked = false
-
-  if (exists) {
-    linked = fs.lstatSync(srcFile).isSymbolicLink()
-  }
+  const exists = await fs.pathExists(srcDir)
+  const linked = exists && fs.lstatSync(srcDir).isSymbolicLink()
 
   // console.log(`${pkg} exists=${exists} linked=${linked}`)
 

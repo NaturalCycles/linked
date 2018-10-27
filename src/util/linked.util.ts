@@ -1,8 +1,8 @@
+import chalk from 'chalk'
 import * as cosmiconfig from 'cosmiconfig'
 import * as cpx from 'cpx'
 import * as del from 'del'
 import * as fs from 'fs-extra'
-const chalk = require('chalk')
 
 export interface StringMap {
   [moduleName: string]: string

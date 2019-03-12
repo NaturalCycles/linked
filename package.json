@@ -27,8 +27,7 @@
     "unlinked": "dist/bin/unlinked.js"
   },
   "engines": {
-    "node": ">=8.11",
-    "yarn": ">=1.10.1"
+    "node": ">=8.11"
   },
   "repository": {
     "type": "git",

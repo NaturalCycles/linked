@@ -1,8 +1,7 @@
-import chalk from 'chalk'
+import * as c from 'ansi-colors'
 import * as cosmiconfig from 'cosmiconfig'
-import * as cpx from 'cpx'
-import * as del from 'del'
 import * as fs from 'fs-extra'
+import { kpy } from 'kpy'
 
 export interface StringMap {
   [moduleName: string]: string
@@ -46,40 +45,38 @@ export async function doUnlinkAll (linkedProjects: StringMap) {
   await Promise.all(Object.keys(linkedProjects).map(m => doUnlink(m)))
 }
 
-async function doLink (moduleName: string, modulePath: string) {
+async function doLink (moduleName: string, modulePath: string): Promise<void> {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  await fs.ensureDir(srcDir)
-  await del(srcDir)
+  await fs.emptyDir(srcDir)
 
   const symlinkTarget = `${modulePath}/src`
 
   console.log(
-    [
-      chalk.grey('linked'),
-      chalk.bold.grey(moduleName),
-      chalk.grey('<'),
-      chalk.grey(modulePath),
-    ].join(' '),
+    [c.grey('linked'), c.bold.grey(moduleName), c.grey('<'), c.grey(modulePath)].join(' '),
   )
 
   fs.symlinkSync(symlinkTarget, srcDir)
 }
 
-async function doUnlink (moduleName: string) {
+async function doUnlink (moduleName: string): Promise<void> {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  await fs.ensureDir(srcDir)
-  await del(srcDir)
+  await fs.emptyDir(srcDir)
 
   console.log(
     [
-      chalk.grey('unlinked'),
-      chalk.bold.grey(moduleName),
-      chalk.grey('<'),
-      chalk.grey(`node_modules/${moduleName}`),
+      c.grey('unlinked'),
+      c.bold.grey(moduleName),
+      c.grey('<'),
+      c.grey(`node_modules/${moduleName}`),
     ].join(' '),
   )
 
-  cpx.copySync(`${ROOT_DIR}/node_modules/${moduleName}/src/**/*`, srcDir)
+  // cpx.copySync(`${ROOT_DIR}/node_modules/${moduleName}/src/**/*`, srcDir)
+  await kpy({
+    baseDir: `${ROOT_DIR}/node_modules/${moduleName}/src`,
+    outputDir: srcDir,
+    silent: true,
+  })
 }
 
 async function doPostinstall (moduleName: string) {

@@ -1,4 +1,4 @@
-import { kpy } from '@naturalcycles/fs-lib'
+import { del, kpy } from '@naturalcycles/fs-lib'
 import * as c from 'ansi-colors'
 import * as cosmiconfig from 'cosmiconfig'
 import * as fs from 'fs-extra'
@@ -47,7 +47,7 @@ export async function doUnlinkAll (linkedProjects: StringMap) {
 
 async function doLink (moduleName: string, modulePath: string): Promise<void> {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  await fs.emptyDir(srcDir)
+  await del(srcDir)
 
   const symlinkTarget = `${modulePath}/src`
 

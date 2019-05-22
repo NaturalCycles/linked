@@ -1,7 +1,7 @@
+import { kpy } from '@naturalcycles/fs-lib'
 import * as c from 'ansi-colors'
 import * as cosmiconfig from 'cosmiconfig'
 import * as fs from 'fs-extra'
-import { kpy } from 'kpy'
 
 export interface StringMap {
   [moduleName: string]: string
@@ -55,7 +55,7 @@ async function doLink (moduleName: string, modulePath: string): Promise<void> {
     [c.grey('linked'), c.bold.grey(moduleName), c.grey('<'), c.grey(modulePath)].join(' '),
   )
 
-  fs.symlinkSync(symlinkTarget, srcDir)
+  await fs.symlink(symlinkTarget, srcDir)
 }
 
 async function doUnlink (moduleName: string): Promise<void> {

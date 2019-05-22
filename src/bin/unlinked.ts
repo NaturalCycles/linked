@@ -9,7 +9,7 @@ yarn unlinked
 import { doUnlinkAll, readConfig } from '../util/linked.util'
 
 doWork().catch(err => {
-  console.error((err && err.message) || err)
+  console.error(err)
   process.exit(1)
 })
 

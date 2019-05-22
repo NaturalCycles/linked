@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/NaturalCycles/linked/compare/v1.1.0...v1.1.1) (2019-05-22)
+
+
+### Bug Fixes
+
+* fs.emptyDir didn't delete the dir ([0d412c2](https://github.com/NaturalCycles/linked/commit/0d412c2))
+
 # [1.1.0](https://github.com/NaturalCycles/linked/compare/v1.0.0...v1.1.0) (2019-05-22)
 
 

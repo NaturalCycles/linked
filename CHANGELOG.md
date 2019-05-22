@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NaturalCycles/linked/compare/v1.0.0...v1.1.0) (2019-05-22)
+
+
+### Features
+
+* bump version ([4511241](https://github.com/NaturalCycles/linked/commit/4511241))
+
 # 1.0.0 (2019-05-22)
 
 

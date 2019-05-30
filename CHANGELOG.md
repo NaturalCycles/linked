@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/NaturalCycles/linked/compare/v1.1.1...v1.1.2) (2019-05-30)
+
+
+### Bug Fixes
+
+* deleting linked project files ([5fb48bb](https://github.com/NaturalCycles/linked/commit/5fb48bb))
+
 ## [1.1.1](https://github.com/NaturalCycles/linked/compare/v1.1.0...v1.1.1) (2019-05-22)
 
 

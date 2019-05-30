@@ -10,12 +10,10 @@ yarn linked postinstall
 
 */
 
+import 'loud-rejection/register'
 import { COMMANDS, doLinkAll, doPostinstallAll, doUnlinkAll, readConfig } from '../util/linked.util'
 
-doWork().catch(err => {
-  console.error(err)
-  process.exit(1)
-})
+void doWork()
 
 async function doWork () {
   const { linkedProjects } = await readConfig()

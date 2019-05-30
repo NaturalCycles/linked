@@ -47,7 +47,12 @@ export async function doUnlinkAll (linkedProjects: StringMap) {
 
 async function doLink (moduleName: string, modulePath: string): Promise<void> {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
-  await del(srcDir)
+
+  if (isSymlink(srcDir)) {
+    await fs.unlink(srcDir)
+  } else {
+    await del(srcDir)
+  }
 
   const symlinkTarget = `${modulePath}/src`
 
@@ -60,6 +65,11 @@ async function doLink (moduleName: string, modulePath: string): Promise<void> {
 
 async function doUnlink (moduleName: string): Promise<void> {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
+
+  if (isSymlink(srcDir)) {
+    await fs.unlink(srcDir)
+  }
+
   await fs.emptyDir(srcDir)
 
   console.log(
@@ -83,14 +93,15 @@ async function doPostinstall (moduleName: string) {
   const srcDir = `${ROOT_DIR}/src/@linked/${moduleName}`
   await fs.ensureDir(srcDir)
 
-  const exists = await fs.pathExists(srcDir)
-  const linked = exists && fs.lstatSync(srcDir).isSymbolicLink()
-
   // console.log(`${pkg} exists=${exists} linked=${linked}`)
 
-  if (!linked) {
+  if (!isSymlink(srcDir)) {
     await doUnlink(moduleName)
   }
 }
 
 // todo: use `debug`
+
+function isSymlink (path: string): boolean {
+  return fs.pathExistsSync(path) && fs.lstatSync(path).isSymbolicLink()
+}

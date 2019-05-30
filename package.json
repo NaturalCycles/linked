@@ -7,7 +7,8 @@
     "@naturalcycles/fs-lib": "^2.2.0",
     "ansi-colors": "^3.2.4",
     "cosmiconfig": "^5.2.1",
-    "fs-extra": "^8.0.1"
+    "fs-extra": "^8.0.1",
+    "loud-rejection": "^2.1.0"
   },
   "devDependencies": {
     "@naturalcycles/dev-lib": "^7.9.0",
@@ -34,5 +35,13 @@
     "url": "https://github.com/NaturalCycles/linked"
   },
   "author": "Natural Cycles Team",
+  "keywords": [
+    "linked",
+    "npm",
+    "yarn",
+    "link",
+    "typescript",
+    "symlink"
+  ],
   "license": "MIT"
 }

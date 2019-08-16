@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/NaturalCycles/linked/compare/v1.1.2...v1.1.3) (2019-08-16)
+
+
+### Bug Fixes
+
+* upgrade lodash and lodash.template ([a3f845b](https://github.com/NaturalCycles/linked/commit/a3f845b))
+
 ## [1.1.2](https://github.com/NaturalCycles/linked/compare/v1.1.1...v1.1.2) (2019-05-30)
 
 
